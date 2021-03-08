@@ -10,10 +10,12 @@ import Form from "./components/form/Form.jsx";
 import RepoList from "./components/repolist/RepoList.jsx";
 import StarredList from "./components/starredlist/StarredList.jsx";
 import FollowersAndFollowingList from './components/followersAndFollowingList/FollowersAndFollowingList.jsx'
+import AboutUser from './components/aboutuser/AboutUser.jsx'
 
 class App extends Component {
   state = {
     user: '',
+    objuser: {},
     repos: [],
     starreds: [],
     error: "",
@@ -25,6 +27,7 @@ class App extends Component {
     activateStarred: false,
     activateFollowing : false,
     activateFollowers : false,
+    errormoreuser: "",
     loading: false
   };
 
@@ -35,7 +38,28 @@ class App extends Component {
 
   searchUser = async () => {
     const { user } = this.state;
+    this.setState({ loading: true });
+
+    try {
+      const { data: objuser } = await axios.get(
+        `https://api.github.com/users/${user}`
+      );
+
+      this.setState({ objuser, error: "", loading: false });
+     
+    } catch (error) {
+      this.setState({
+        errormoreuser: "Usuário não encontrado",
+        objuser: {},
+        loading: false
+      });
+    }
+  };
+
+  searchUserRepos = async () => {
+    const { user } = this.state;
     this.setState({ loading: true, activateStarred: false, activateFollowers: false, activateFollowing: false });
+    this.searchUser();
 
     try {
       const { data: repos } = await axios.get(
@@ -124,7 +148,7 @@ class App extends Component {
   render() {
     const { user, repos, error, loading, starreds, repoespecif,  followers,
       following, activateRepos, activateStarred, activateFollowing ,
-      activateFollowers, activateButtonsUser } = this.state;
+      activateFollowers, activateButtonsUser, objuser, errormoreuser } = this.state;
     
 //<Routes></Routes>
     return (
@@ -137,17 +161,17 @@ class App extends Component {
             user={user}
             error={error}
             loading={loading}
-            buttonAction={this.searchUser}
+            buttonAction={this.searchUserRepos}
           />
           <div>
             <div className="conteudouser">
               
-              <div className="cabecalho">
-                <h1>{user}</h1>
+              <div className="cabecalho" hidden={!activateButtonsUser}>
+                <AboutUser objuser={objuser}/>
               </div>
         
               <div className="basicsButtonsTogether" hidden={!activateButtonsUser}>
-                <button  className="basicsButton" onClick={this.searchUser}>
+                <button  className="basicsButton" onClick={this.searchUserRepos}>
                   Repositórios
                 </button>
                 <button  className="basicsButton" onClick={this.searchUserStarred}>

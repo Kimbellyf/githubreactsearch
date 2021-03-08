@@ -1,0 +1,10 @@
+.spaceimage{
+    width: 25%;
+    float: center;
+    margin: auto;
+    align-items: center;
+}
+.spacetextbio{
+    width: 75%;
+    float: left;
+}
