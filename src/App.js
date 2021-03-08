@@ -72,7 +72,7 @@ class App extends Component {
 
   searchFollowers = async () => {
     const { user } = this.state;
-    this.setState({ loading: true });
+    this.setState({ loading: true, activateRepos: false, activateStarred:false });
 
     try {
       const { data: followers } = await axios.get(
@@ -93,7 +93,7 @@ class App extends Component {
 
   searchFollowing = async () => {
     const { user } = this.state;
-    this.setState({ loading: true });
+    this.setState({ loading: true, activateRepos: false, activateStarred:false });
 
     try {
       const { data: following } = await axios.get(
