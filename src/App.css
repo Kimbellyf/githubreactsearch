@@ -49,6 +49,13 @@ header {
   border-radius: 4px;
 }
 
+.cabecalho{
+  align-items: center;
+  margin: auto;
+  text-align: center;
+}
+
+
 .searchButton {
   width: 150px;
   height: 42px;
@@ -62,6 +69,10 @@ header {
   border-radius: 4px;
   cursor: pointer;
 }
+.basicsButtonsTogether{
+  margin: auto;
+  text-align: center;
+}
 .basicsButton{
   width: 150px;
   height: 42px;
@@ -70,7 +81,7 @@ header {
   background: rgb(36, 55, 106);
   color: #fff;
   border: 0;
-  font-size: 20px;
+  font-size: 13px;
   font-weight: bold;
   border-radius: 4px;
   cursor: pointer;

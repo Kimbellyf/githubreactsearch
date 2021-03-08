@@ -131,20 +131,21 @@ class App extends Component {
             buttonAction={this.searchUser}
           />
           <div>
-            <h1>{user}</h1>
-            
-
-            <div>
-              <button className="basicsButton" onClick={this.searchUser}>
+            <div className="cabecalho">
+              <h1>{user}</h1>
+            </div>
+      
+            <div className="basicsButtonsTogether">
+              <button  className="basicsButton" onClick={this.searchUser}>
                 Repositórios
               </button>
-              <button className="basicsButton" onClick={this.searchUserStarred}>
-                Favoritos/Estrelas
+              <button  className="basicsButton" onClick={this.searchUserStarred}>
+                Estrelas
               </button>
-              <button type="button" className="btn btn-primary" onClick={this.searchFollowers}>
+              <button type="button" className="basicsButton" onClick={this.searchFollowers}>
                 Seguidores
               </button>
-              <button className="basicsButton" onClick={this.searchFollowing}>
+              <button  className="basicsButton" onClick={this.searchFollowing}>
                 Seguindo
               </button>
             </div>
