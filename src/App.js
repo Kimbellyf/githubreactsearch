@@ -20,6 +20,7 @@ class App extends Component {
     repoespecif: "",
     followers : [],
     following : [],
+    activateButtonsUser: false,
     activateRepos: false,
     activateStarred: false,
     activateFollowing : false,
@@ -41,13 +42,12 @@ class App extends Component {
         `https://api.github.com/users/${user}/repos`
       );
 
-      console.log(repos);
-
-      this.setState({ repos, error: "", activateRepos: true, loading: false, activateStarred: false, activateFollowers: false, activateFollowing: false });
+      this.setState({ repos, error: "", activateRepos: true, loading: false, activateStarred: false, activateFollowers: false, activateFollowing: false, activateButtonsUser: true });
     } catch (error) {
       this.setState({
         error: "Usuário não encontrado",
         repos: [],
+        activateButtonsUser: false,
         loading: false
       });
     }
@@ -55,7 +55,7 @@ class App extends Component {
 
    searchUserStarred = async () => {
     const { user } = this.state;
-    this.setState({ loading: true, activateRepos: false, activateStarred: true,  activateFollowing :false , activateFollowers: false});
+    this.setState({ loading: true, activateRepos: false, activateStarred: true,  activateFollowing :false , activateFollowers: false, activateButtonsUser: true});
 
     try {
       const { data: starreds } = await axios.get(
@@ -77,7 +77,7 @@ class App extends Component {
 
   searchFollowers = async () => {
     const { user } = this.state;
-    this.setState({ loading: true, activateRepos: false, activateStarred:false,  activateFollowing : false, activateFollowers: true});
+    this.setState({ loading: true, activateRepos: false, activateStarred:false,  activateFollowing : false, activateFollowers: true, activateButtonsUser: true});
 
     try {
       const { data: followers } = await axios.get(
@@ -99,7 +99,7 @@ class App extends Component {
 
   searchFollowing = async () => {
     const { user } = this.state;
-    this.setState({ loading: true, activateRepos: false, activateStarred:false, activateFollowers: false, activateFollowing: true });
+    this.setState({ loading: true, activateRepos: false, activateStarred:false, activateFollowers: false, activateFollowing: true, activateButtonsUser: true });
 
     try {
       const { data: following } = await axios.get(
@@ -124,7 +124,7 @@ class App extends Component {
   render() {
     const { user, repos, error, loading, starreds, repoespecif,  followers,
       following, activateRepos, activateStarred, activateFollowing ,
-      activateFollowers } = this.state;
+      activateFollowers, activateButtonsUser } = this.state;
     
 //<Routes></Routes>
     return (
@@ -146,7 +146,7 @@ class App extends Component {
                 <h1>{user}</h1>
               </div>
         
-              <div className="basicsButtonsTogether">
+              <div className="basicsButtonsTogether" hidden={!activateButtonsUser}>
                 <button  className="basicsButton" onClick={this.searchUser}>
                   Repositórios
                 </button>
