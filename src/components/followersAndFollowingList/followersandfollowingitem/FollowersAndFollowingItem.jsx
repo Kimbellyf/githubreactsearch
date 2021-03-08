@@ -1,8 +1,9 @@
 import React from "react";
 import CircleAvatar from '../../circleavatar/CircleAvatar.jsx'
+import './FollowersAndFollowingItem.css'
 
 const FollowersAndFollowingItem = ({ person, urlImage }) => (
-    <div>
+    <div className="containerfollowx">
         <CircleAvatar urlImage={person.avatar_url}></CircleAvatar>
         <a
             href={person.html_url}
