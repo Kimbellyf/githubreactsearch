@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import "./App.css";
-import {HashRouter, Route, Switch, Link, Redirect} from 'react-router-dom';
+import {HashRouter, Route, Switch, Link, Redirect, useParams} from 'react-router-dom';
 import Routes from './Routes';
 
 import Header from "./components/header";
 import Form from "./components/form/Form.jsx";
 import RepoList from "./components/repolist/RepoList.jsx";
 import StarredList from "./components/starredlist/StarredList.jsx";
+import FollowersAndFollowingList from './components/followersAndFollowingList/FollowersAndFollowingList.jsx'
 
 class App extends Component {
   state = {
-    user: "",
+    user: '',
     repos: [],
     starreds: [],
     error: "",
@@ -21,8 +22,11 @@ class App extends Component {
     following : [],
     activateRepos: false,
     activateStarred: false,
+    activateFollowing : false,
+    activateFollowers : false,
     loading: false
   };
+
 
   changeUser = user => {
     this.setState({ user });
@@ -30,7 +34,7 @@ class App extends Component {
 
   searchUser = async () => {
     const { user } = this.state;
-    this.setState({ loading: true, activateStarred: false });
+    this.setState({ loading: true, activateStarred: false, activateFollowers: false, activateFollowing: false });
 
     try {
       const { data: repos } = await axios.get(
@@ -39,7 +43,7 @@ class App extends Component {
 
       console.log(repos);
 
-      this.setState({ repos, error: "", activateRepos: true, loading: false, activateStarred: false });
+      this.setState({ repos, error: "", activateRepos: true, loading: false, activateStarred: false, activateFollowers: false, activateFollowing: false });
     } catch (error) {
       this.setState({
         error: "Usuário não encontrado",
@@ -51,20 +55,21 @@ class App extends Component {
 
    searchUserStarred = async () => {
     const { user } = this.state;
-    this.setState({ loading: true, activateRepos: false, activateStarred: true });
+    this.setState({ loading: true, activateRepos: false, activateStarred: true,  activateFollowing :false , activateFollowers: false});
 
     try {
       const { data: starreds } = await axios.get(
         `https://api.github.com/users/${user}/starred`
       );
 
-      this.setState({ starreds, error: "", loading: false });
+      this.setState({ starreds, error: "", loading: false, activateFollowers: false, activateFollowing: false  });
     } catch (error) {
       this.setState({
         error: "Usuário não encontrado",
         repos: [],
         starreds : [],
         followers : [],
+        following: [],
         loading: false
       });
     }
@@ -72,7 +77,7 @@ class App extends Component {
 
   searchFollowers = async () => {
     const { user } = this.state;
-    this.setState({ loading: true, activateRepos: false, activateStarred:false });
+    this.setState({ loading: true, activateRepos: false, activateStarred:false,  activateFollowing : false, activateFollowers: true});
 
     try {
       const { data: followers } = await axios.get(
@@ -86,6 +91,7 @@ class App extends Component {
         error: "Usuários não encontrados",
         repos: [],
         followers : [],
+        following: [],
         loading: false
       });
     }
@@ -93,7 +99,7 @@ class App extends Component {
 
   searchFollowing = async () => {
     const { user } = this.state;
-    this.setState({ loading: true, activateRepos: false, activateStarred:false });
+    this.setState({ loading: true, activateRepos: false, activateStarred:false, activateFollowers: false, activateFollowing: true });
 
     try {
       const { data: following } = await axios.get(
@@ -107,6 +113,7 @@ class App extends Component {
         error: "Usuários não encontrados",
         repos: [],
         following : [],
+        followers: [],
         loading: false
       });
     }
@@ -116,7 +123,9 @@ class App extends Component {
 
   render() {
     const { user, repos, error, loading, starreds, repoespecif,  followers,
-      following, activateRepos, activateStarred  } = this.state;
+      following, activateRepos, activateStarred, activateFollowing ,
+      activateFollowers } = this.state;
+    
 //<Routes></Routes>
     return (
       //<HashRouter>
@@ -157,7 +166,14 @@ class App extends Component {
             </div> 
             <div hidden={!activateStarred}>
               <StarredList starreds={starreds} />
-            </div> 
+            </div>
+            
+            <div hidden={!activateFollowers}>
+              <FollowersAndFollowingList followersorfollowinglist = {followers}/>
+            </div>
+            <div hidden={!activateFollowing}>
+              <FollowersAndFollowingList followersorfollowinglist = {following}/>
+            </div>
           </div>     
         </div>
       //</HashRouter>

@@ -3,7 +3,7 @@ import CircleAvatar from '../../circleavatar/CircleAvatar.jsx'
 
 const FollowersAndFollowingItem = ({ person, urlImage }) => (
     <div>
-        <CircleAvatar urlImage={urlImage}></CircleAvatar>
+        <CircleAvatar urlImage={person.avatar_url}></CircleAvatar>
         <a
             href={person.html_url}
             key={person.id}
@@ -11,9 +11,7 @@ const FollowersAndFollowingItem = ({ person, urlImage }) => (
             target="_blank"
         >
             <span>{person.name}</span>
-            <span>Owner: {person.owner.login}</span>
-            <span>Repo: {person.description}</span>
-            <span>Url by owner: {person.owner.url}</span>
+           
         </a>
     </div>
 );
