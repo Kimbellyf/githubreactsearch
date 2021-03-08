@@ -21,12 +21,15 @@ body {
 
 header {
   text-align: center;
+  align-items: center;
 }
 
 .title {
   font-family: Roboto;
   margin-left: auto;
   margin-right: auto;
+  font-size: 0.43 em;
+  align-items: center;
 }
 
 .errorText {
@@ -47,6 +50,10 @@ header {
   color: #444;
   font-size: 18px;
   border-radius: 4px;
+}
+
+.conteudouser{
+  margin-top: 20px;
 }
 
 .cabecalho{

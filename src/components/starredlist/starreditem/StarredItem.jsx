@@ -9,11 +9,8 @@ const StarredItem = ({ starred }) => (
   >
     <span>{starred.name}</span>
     <span>Repo: {starred.full_name}</span>
-    <span>Owner: {starred.owner.login}</span>
-    <span>Repo: {starred.description}</span>
-    <span>Url by owner: {starred.owner.url}</span>
-    <span>Url by repo: {starred.html_url}</span>
-    <span>Url by repo2: {starred.url}</span>
+    <span>Dono: {starred.owner.login}</span>
+    <span>Descrição: {starred.description}</span>
   </a>
 );
 

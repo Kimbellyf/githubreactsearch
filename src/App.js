@@ -131,33 +131,34 @@ class App extends Component {
             buttonAction={this.searchUser}
           />
           <div>
-            <div className="cabecalho">
-              <h1>{user}</h1>
+            <div className="conteudouser">
+              
+              <div className="cabecalho">
+                <h1>{user}</h1>
+              </div>
+        
+              <div className="basicsButtonsTogether">
+                <button  className="basicsButton" onClick={this.searchUser}>
+                  Repositórios
+                </button>
+                <button  className="basicsButton" onClick={this.searchUserStarred}>
+                  Estrelas
+                </button>
+                <button type="button" className="basicsButton" onClick={this.searchFollowers}>
+                  Seguidores
+                </button>
+                <button  className="basicsButton" onClick={this.searchFollowing}>
+                  Seguindo
+                </button>
+              </div>
             </div>
-      
-            <div className="basicsButtonsTogether">
-              <button  className="basicsButton" onClick={this.searchUser}>
-                Repositórios
-              </button>
-              <button  className="basicsButton" onClick={this.searchUserStarred}>
-                Estrelas
-              </button>
-              <button type="button" className="basicsButton" onClick={this.searchFollowers}>
-                Seguidores
-              </button>
-              <button  className="basicsButton" onClick={this.searchFollowing}>
-                Seguindo
-              </button>
-            </div>
-          </div>
-          <div hidden={!activateRepos}>
-             <RepoList repos={repos} />  
-          </div> 
-          <div hidden={!activateStarred}>
-            <StarredList starreds={starreds} />
-          </div>      
-          
-
+            <div hidden={!activateRepos}>
+              <RepoList repos={repos} />  
+            </div> 
+            <div hidden={!activateStarred}>
+              <StarredList starreds={starreds} />
+            </div> 
+          </div>     
         </div>
       //</HashRouter>
 
