@@ -10,7 +10,7 @@ const FollowersAndFollowingItem = ({ person, urlImage }) => (
             className="repoItemContainer"
             target="_blank"
         >
-            <span>{person.name}</span>
+            <span>{person.login}</span>
            
         </a>
     </div>
