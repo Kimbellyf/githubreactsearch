@@ -1,9 +1,10 @@
 import React from "react";
+import './CircleAvatar.css';
 
 const CircleAvatar = ({ urlImage }) => (
   <div>
-      <div class="circle">
-        <img src={urlImage} alt="Foto"/>
+      <div className="circle">
+        <img src={urlImage} alt="Foto" className="circle img"/>
       </div>
   </div>
 );
