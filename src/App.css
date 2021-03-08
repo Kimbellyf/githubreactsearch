@@ -37,7 +37,20 @@ header {
   height: 42px;
   padding: 10px;
   margin-left: 10px;
-  background: orange;
+  background: rgb(36, 55, 106);
+  color: #fff;
+  border: 0;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.basicsButton{
+  width: 150px;
+  height: 42px;
+  padding: 10px;
+  margin: 10px;
+  background: rgb(36, 55, 106);
   color: #fff;
   border: 0;
   font-size: 20px;
@@ -158,4 +171,5 @@ header {
   .searchButton {
     width: 90px;
   }
+ 
 }

@@ -6,11 +6,12 @@ import UserAndRepos from './pages/userandrepos/UserAndRepos.jsx';
 //import UserCrud from ';'
 
 //<Route exact path = '/' component = {Home} />
+// <Route path='/:id' component={UserAndRepos} />
 const Routes =
     <Switch>
 
         
-        <Route path='/:id' component={UserAndRepos} />
+       
         
         <Redirect from='*' to='/' />
     </Switch>

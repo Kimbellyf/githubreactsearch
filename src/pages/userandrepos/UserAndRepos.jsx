@@ -17,9 +17,9 @@ const userProps = {
 
 
 class UserAndRepos extends Component{
-
+    //props.match.params.id
     state = {
-        user: props.match.params.id,
+        user: "",
         repos: [],
         starreds: [],
         error: "",

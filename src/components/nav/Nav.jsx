@@ -3,7 +3,7 @@ import React from 'react';
 import Form from '../form/Form.jsx';
 import {Link} from 'react-router-dom';
 
-const Nav = () =>
+const Nav = ({ user, loading, error, buttonAction, changeUser }) =>
     <aside className="menu-area">
         <nav className="menu">
             {/*Refatorar */}
